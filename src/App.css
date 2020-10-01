@@ -1,3 +1,4 @@
+/* Header Styling */
 .Header {
   align-items: center;
   display: flex;
@@ -10,7 +11,7 @@
 .Header nav a {
   color: black;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: normal;
   margin: 0 10px;
   text-decoration: none;
 }
@@ -19,7 +20,9 @@
   color: green;
 }
 
+/* Home Styling */
 .Home {
   margin: 0 auto;
   max-width: 1080px;
+  padding: 0 25px;
 }
