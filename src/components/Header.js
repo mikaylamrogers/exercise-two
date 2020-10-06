@@ -4,14 +4,14 @@ function Header() {
     return (
         <header className="Header">
             <div>
-                <h1>Weather App</h1>
+                <h1>today's weather</h1>
             </div>
            
             <nav>
-                <a href="?/city=Seoul">Seoul</a>
-                <a href="?/city=Chicago">Chicago</a>
-                <a href="?/city=Toronto">Toronto</a>
-                <a href="?/city=Shanghai">Shanghai</a>
+                <a href="/?city=Seoul">seoul</a>
+                <a href="/?city=Chicago">chicago</a>
+                <a href="/?city=Toronto">toronto</a>
+                <a href="/?city=Shanghai">shanghai</a>
             </nav>
         </header>
     );

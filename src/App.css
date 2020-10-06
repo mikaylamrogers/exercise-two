@@ -26,3 +26,8 @@
   max-width: 1080px;
   padding: 0 25px;
 }
+
+/* Font Awesome Icons */
+.WeatherInfo_Image {
+  font-size: 100px;
+}

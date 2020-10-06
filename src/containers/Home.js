@@ -1,9 +1,9 @@
 import React, {  useState, useEffect, useMemo  } from 'react';
-
 import axios from 'axios';
 import {  useHistory  } from 'react-router-dom';
 
 import Header from '../components/Header';
+import WeatherImage from "../components/WeatherImage";
 
 const weatherKey = `e8287c626eae68fcf8dcc499839c724e`;
 
@@ -91,15 +91,25 @@ function Home() {
         <div>
             <Header />
             <main className="Home">
-                <h2>Weather in {city}</h2>
+                <h2>{city}</h2>
                 <div className="WeatherInfo">
-                    <p>Weather Type: {weatherType}</p>
-                    <p>Current Temperature: {currentTemp}</p>
-                    <p>High Temperature: {highTemp}</p>
-                    <p>Low Temperature: {lowTemp}</p>
-                    <p>Cloudiness: {cloudiness}</p>
-                    <p>Humidity: {humidity}</p>
-                    <p>Wind Speed: {windSpeed}</p>
+
+                    {/* ICON */}
+                    <div className="WeatherInfo_Image">
+                        <WeatherImage weatherType={weatherType}  />
+                    </div>
+                     
+
+                    {/* WEATHER INFO */}
+                    <p className="weatherInfo_Type">{weatherType}</p>
+                    <h3 className="weatherInfo_Current">current temperature: {currentTemp}</h3>
+                    <p>high temperature: {highTemp}</p>
+                    <p>low temperature: {lowTemp}</p>
+                    <p>cloudiness: {cloudiness}</p>
+                    <p>humidity: {humidity}</p>
+                    <p>wind speed: {windSpeed}</p>
+
+
                 </div>
             </main>
         </div>
