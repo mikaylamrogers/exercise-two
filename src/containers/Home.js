@@ -16,7 +16,7 @@ function Home() {
     useEffect(() => {
         axios
             .get(
-                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${weatherKey}`
             )
             .then(function (response) {
                 // successful request
@@ -40,6 +40,7 @@ function Home() {
 
     const { 
         cloudiness,
+        cloudinessValue,
         currentTemp, 
         highTemp, 
         humidity,
@@ -48,6 +49,7 @@ function Home() {
         windSpeed,
     } = useMemo(() => {
         let cloudiness = '';
+        let cloudinessValue = 0;
         let currentTemp = '';
         let highTemp = '';
         let humidity = '';
@@ -55,18 +57,20 @@ function Home() {
         let weatherType = '';
         let windSpeed = '';
 
-        if(weatherData) {
-            cloudiness = weatherData.clouds.all + '%';
-            currentTemp = weatherData.main.temp
-            highTemp = weatherData.main.temp_max
+        if (weatherData) {
+            cloudiness = weatherData.clouds.all + '%'; // Type: String (not always able to do math)
+            cloudinessValue = weatherData.clouds.all; // Type: Number (can do math)
+            currentTemp = Math.round(weatherData.main.temp) + '°';
+            highTemp = Math.round(weatherData.main.temp_max) + '°';
             humidity = weatherData.main.humidity + '%';
-            lowTemp = weatherData.main.temp_min
-            weatherType = weatherData.weather[0].description
-            windSpeed = weatherData.wind.speed + 'km/h';
+            lowTemp = Math.round(weatherData.main.temp_min) + '°';
+            weatherType = weatherData.weather[0].description;
+            windSpeed = weatherData.wind.speed + ' m/h';
         }
 
         return { 
             cloudiness,
+            cloudinessValue,
             currentTemp,
             highTemp,
             humidity,
@@ -90,24 +94,60 @@ function Home() {
     return (
         <div>
             <Header />
-            <main className="Home">
-                <h2>{city}</h2>
-                <div className="WeatherInfo">
+            <main className="Home" >
+                <div className="Head" style={{ background: `linear-gradient(rgba(${parseInt(currentTemp.slice(0, -1)) > 80 ? "255, 0, 195" : "0, 195, 255"}, ${parseInt(cloudiness.slice(0, -1)) / 250 + 1}), rgba(${parseInt(currentTemp.slice(0, -1)) > 80 ? "255, 162, 0" : "211, 145, 235"}, ${parseInt(cloudiness.slice(0, -1)) / 150 + .5 }))`, }} >
+                    <h2 className="city"> {city} </h2>
+                        <div className="navBar">   
+                            {/* OTHER CITIES */}
+                            <nav>                             
+                                <a href="/?city=Tokyo">tokyo</a>
+                                <a href="/?city=Paris">paris</a>
+                                <a href="/?city=Honolulu">honolulu</a>
+                                <a href="/?city=Philadelphia">philly</a>
+                            </nav>
+                        </div>
+                </div>
+
 
                     {/* ICON */}
-                    <div className="WeatherInfo_Image">
-                        <WeatherImage weatherType={weatherType}  />
+                    <div className="WeatherInfo_Display">
+                        <div className="Icon"><WeatherImage weatherType={weatherType}  /></div>
+                        <h3 className="weatherInfo_Current">{currentTemp}</h3>
                     </div>
                      
+                     
+                <div className="WeatherInfo"  >
+                    <table>
+                        <tr>
+                            <p className="weatherInfo_Type">{weatherType}</p>
+                            <td><p></p></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><p className="WeatherDetails">high temperature </p></td>
+                            <td><p className="Numbers">{highTemp}</p></td>
+                        </tr>
 
-                    {/* WEATHER INFO */}
-                    <p className="weatherInfo_Type">{weatherType}</p>
-                    <h3 className="weatherInfo_Current">current temperature: {currentTemp}</h3>
-                    <p>high temperature: {highTemp}</p>
-                    <p>low temperature: {lowTemp}</p>
-                    <p>cloudiness: {cloudiness}</p>
-                    <p>humidity: {humidity}</p>
-                    <p>wind speed: {windSpeed}</p>
+                        <tr>
+                            <td><p className="WeatherDetails">low temperature </p></td>
+                            <td><p className="Numbers">{lowTemp}</p></td>
+                        </tr>
+
+                        <tr>
+                            <td><p className="WeatherDetails">cloudiness </p></td>
+                            <td><p className="Numbers">{cloudiness}</p></td>
+                        </tr>
+
+                        <tr>
+                            <td><p className="WeatherDetails">humidity </p></td>
+                            <td><p className="Numbers">{humidity}</p></td>
+                        </tr>
+
+                        <tr>
+                            <td><p className="WeatherDetails">wind speed </p></td>
+                            <td><p className="Numbers">{windSpeed}</p></td>
+                        </tr>
+                    </table>
 
 
                 </div>
