@@ -100,7 +100,7 @@ function Home() {
                         <div className="navBar">   
                             {/* OTHER CITIES */}
                             <nav>                             
-                                <a href="/?city=Tokyo">tokyo</a>
+                                <a href="/?city=Manila">manila</a>
                                 <a href="/?city=Paris">paris</a>
                                 <a href="/?city=Honolulu">honolulu</a>
                                 <a href="/?city=Philadelphia">philly</a>
@@ -117,11 +117,9 @@ function Home() {
                      
                      
                 <div className="WeatherInfo"  >
+                <p className="weatherInfo_Type">"{weatherType}"</p>
+
                     <table>
-                        <tr>
-                            <p className="weatherInfo_Type">{weatherType}</p>
-                            <td><p></p></td>
-                        </tr>
                         
                         <tr>
                             <td><p className="WeatherDetails">high temperature </p></td>

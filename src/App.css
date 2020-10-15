@@ -28,17 +28,20 @@
 
 /* other cities */
 nav a {
-  /* color: white; */
+  color: white;
   text-align: center;
   font-size: 2vh;
   font-weight: normal;
-  margin: 0 8px;
+  text-transform: uppercase;
+  margin: 0;
   text-decoration: none;
   padding: 2vh;
 }
 
 nav {
-  /* color: white; */
+  color: white;
+  font-weight: normal;
+  padding-bottom: .5px;
   border-bottom: 0.3vh solid black;
 }
 
@@ -58,7 +61,7 @@ h1 {
 /* CITY NAME */
 h2 {
   color: white;
-  font-size: 10vh;
+  font-size: 7.8vh;
   margin: 0;
   font-weight: normal;
   text-transform: uppercase;
@@ -89,14 +92,16 @@ td {
   color: black;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 2.7vh;
+  text-align: center;
+  font-size: 2.3vh;
   margin: 1vh;
+  padding: 0;
 }
 
 .WeatherDetails {
   color: black;
   text-transform: uppercase;
-  font-size: 2.6vh;
+  font-size: 2.7vh;
   margin: 1vh;
 }
 
@@ -117,6 +122,8 @@ h3 {
   justify-content:space-around;
   flex-direction: row; 
   padding: 15px 30px 0;
+  padding-top: 30px;
+  padding-bottom: 20px;
 	margin: auto;
 }
 
